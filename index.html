@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Digital Stylist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="max-w-md mx-auto min-h-screen pb-20 bg-[#1a1a1a]">
+
+    <!-- Header with Logo -->
+    <header class="px-6 pt-2 pb-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-full flex items-center justify-center">
+                <i data-lucide="sparkles" class="w-4 h-4 text-black"></i>
+            </div>
+            <span class="text-[10px] font-semibold tracking-wide">THE DIGITAL<br>STYLIST</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="text-xs text-gray-400 font-semibold">Fatima</span>
+            <div onclick="openModal('profileModal')" class="w-10 h-10 rounded-full border-2 border-[#FFD700] overflow-hidden cursor-pointer">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fatima" alt="User Profile">
+            </div>
+        </div>
+    </header>
+
+    <!-- CLOSET VIEW -->
+    <section id="view-closet" class="px-6">
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold mb-1">Your Closet</h1>
+            <p class="text-xs text-gray-400">Manage your wardrobe collection</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <!-- Add Item Button -->
+            <div onclick="openModal('addItemModal')" class="cursor-pointer border-2 border-dashed border-gray-700 rounded-2xl flex flex-col items-center justify-center h-[226px] hover:border-[#FFD700] hover:bg-gray-800/30 transition-all duration-200">
+                <div class="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center mb-2">
+                    <i data-lucide="plus" class="text-[#FFD700] w-6 h-6"></i>
+                </div>
+                <p class="text-xs text-gray-400 font-medium">Add Item</p>
+            </div>
+
+            <!-- Clothing Item 1 -->
+            <div class="clothing-item group">
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=400" alt="Black Pants">
+                <button onclick="removeClothingItem(this)" class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-white"></i>
+                </button>
+                <div class="p-3">
+                    <span class="inline-block bg-gray-700 text-[10px] px-2 py-1 rounded-full mb-1 cursor-pointer hover:bg-gray-600 transition" onclick="openTagEditor(this)">Casual</span>
+                </div>
+            </div>
+
+            <!-- Clothing Item 2 -->
+            <div class="clothing-item group">
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=400" alt="Red NC State Shirt">
+                <button onclick="removeClothingItem(this)" class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-white"></i>
+                </button>
+                <div class="p-3">
+                    <span class="inline-block bg-gray-700 text-[10px] px-2 py-1 rounded-full mb-1 cursor-pointer hover:bg-gray-600 transition" onclick="openTagEditor(this)">School</span>
+                </div>
+            </div>
+
+            <!-- Clothing Item 3 -->
+            <div class="clothing-item group">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80&w=400" alt="Black Jacket">
+                <button onclick="removeClothingItem(this)" class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-white"></i>
+                </button>
+                <div class="p-3">
+                    <span class="inline-block bg-gray-700 text-[10px] px-2 py-1 rounded-full mb-1 cursor-pointer hover:bg-gray-600 transition" onclick="openTagEditor(this)">Formal</span>
+                </div>
+            </div>
+
+            <!-- Clothing Item 4 -->
+            <div class="clothing-item group">
+                <img src="https://images.unsplash.com/photo-1495105787522-5334e3ffa0ef?auto=format&fit=crop&q=80&w=400" alt="Black Jacket 2">
+                <button onclick="removeClothingItem(this)" class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-white"></i>
+                </button>
+                <div class="p-3">
+                    <span class="inline-block bg-gray-700 text-[10px] px-2 py-1 rounded-full mb-1 cursor-pointer hover:bg-gray-600 transition" onclick="openTagEditor(this)">Work</span>
+                </div>
+            </div>
+
+            <!-- Clothing Item 5 -->
+            <div class="clothing-item group">
+                <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&q=80&w=400" alt="Blue Jeans">
+                <button onclick="removeClothingItem(this)" class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <i data-lucide="trash-2" class="w-4 h-4 text-white"></i>
+                </button>
+                <div class="p-3">
+                    <span class="inline-block bg-gray-700 text-[10px] px-2 py-1 rounded-full mb-1 cursor-pointer hover:bg-gray-600 transition" onclick="openTagEditor(this)">Casual</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GENERATE OUTFIT VIEW -->
+    <section id="view-generate" class="hidden px-6 pb-20">
+        <!-- Header -->
+        <div id="generateMainHeader" class="mb-10 text-center">
+            <h1 class="text-4xl font-bold mb-2">Create Your Look</h1>
+            <p class="text-sm text-gray-400">Choose how you'd like to get styled</p>
+        </div>
+
+        <!-- Three Options Container -->
+        <div id="generateOptionsContainer">
+            <div class="space-y-3 mb-8">
+                <!-- Option 1: Generate from Closet -->
+                <button onclick="showGenerateFromCloset()" class="w-full p-5 bg-gradient-to-r from-blue-600/20 to-blue-500/10 border border-blue-500/30 rounded-2xl hover:border-blue-500/60 transition group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 group-hover:bg-blue-500/30 flex items-center justify-center transition">
+                            <i data-lucide="shirt" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h3 class="font-bold text-white">From Your Closet</h3>
+                            <p class="text-xs text-gray-400">Mix & match your clothes</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-500"></i>
+                    </div>
+                </button>
+
+                <!-- Option 2: Generate at This Moment -->
+                <button onclick="showGenerateAtMoment()" class="w-full p-5 bg-gradient-to-r from-purple-600/20 to-purple-500/10 border border-purple-500/30 rounded-2xl hover:border-purple-500/60 transition group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 group-hover:bg-purple-500/30 flex items-center justify-center transition">
+                            <i data-lucide="camera" class="w-6 h-6 text-purple-400"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h3 class="font-bold text-white">Right Now</h3>
+                            <p class="text-xs text-gray-400">Upload & describe your moment</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-500"></i>
+                    </div>
+                </button>
+
+                <!-- Option 3: Random Suggestion -->
+                <button onclick="showGenerateRandom()" class="w-full p-5 bg-gradient-to-r from-amber-600/20 to-amber-500/10 border border-amber-500/30 rounded-2xl hover:border-amber-500/60 transition group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 group-hover:bg-amber-500/30 flex items-center justify-center transition">
+                            <i data-lucide="zap" class="w-6 h-6 text-amber-400"></i>
+                        </div>
+                        <div class="text-left flex-1">
+                            <h3 class="font-bold text-white">Random Surprise</h3>
+                            <p class="text-xs text-gray-400">Let AI pick for you</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-500"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Generate from Closet View -->
+        <div id="generateFromClosetView" class="hidden">
+            <h2 class="text-2xl font-bold mb-2 text-center">Select Your Pieces</h2>
+            <p class="text-sm text-gray-400 mb-6 text-center">Choose items from your closet to create the perfect outfit</p>
+            <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="clothing-item cursor-pointer border-2 border-gray-700 hover:border-[#FFD700] transition">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=400" alt="Outfit">
+                    <div class="p-3">
+                        <span class="text-[10px] text-gray-400">Casual Pants</span>
+                    </div>
+                </div>
+                <div class="clothing-item cursor-pointer border-2 border-gray-700 hover:border-[#FFD700] transition">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=400" alt="Outfit">
+                    <div class="p-3">
+                        <span class="text-[10px] text-gray-400">Red Shirt</span>
+                    </div>
+                </div>
+                <div class="clothing-item cursor-pointer border-2 border-gray-700 hover:border-[#FFD700] transition">
+                    <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&q=80&w=400" alt="Outfit">
+                    <div class="p-3">
+                        <span class="text-[10px] text-gray-400">Black Jacket</span>
+                    </div>
+                </div>
+                <div class="clothing-item cursor-pointer border-2 border-gray-700 hover:border-[#FFD700] transition">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&q=80&w=400" alt="Outfit">
+                    <div class="p-3">
+                        <span class="text-[10px] text-gray-400">Blue Jeans</span>
+                    </div>
+                </div>
+            </div>
+            <button onclick="goBackToGenerateOptions()" class="w-full bg-gray-800 border border-gray-700 py-3 rounded-xl text-white font-bold hover:border-[#FFD700] transition mb-4">
+                Back to Options
+            </button>
+            <button class="gold-gradient w-full py-4 rounded-2xl text-black font-bold text-center">
+                GENERATE LOOK
+            </button>
+        </div>
+
+        <!-- Generate at This Moment View -->
+        <div id="generateAtMomentView" class="hidden">
+            <h2 class="text-2xl font-bold mb-2 text-center">Style Right Now</h2>
+            <p class="text-sm text-gray-400 mb-6 text-center">Upload photos and describe your occasion for personalized recommendations</p>
+            
+            <!-- Multiple Photo Upload Section -->
+            <div class="mb-6">
+                <label class="text-sm font-semibold mb-2 block">Upload Photos</label>
+                <div onclick="openMomentPhotoUpload()" class="border-2 border-dashed border-gray-700 rounded-2xl p-8 text-center cursor-pointer hover:border-[#FFD700] hover:bg-gray-800/30 transition">
+                    <i data-lucide="upload-cloud" class="w-8 h-8 text-[#FFD700] mx-auto mb-2"></i>
+                    <p class="font-semibold text-white">Add Photos</p>
+                    <p class="text-xs text-gray-400">Click to upload or drag and drop (multiple files)</p>
+                </div>
+            </div>
+
+            <!-- Photos Preview Grid -->
+            <div id="momentPhotosContainer" class="grid grid-cols-2 gap-3 mb-6">
+            </div>
+
+            <!-- Event Description -->
+            <div class="mb-6">
+                <label class="text-sm font-semibold mb-2 block">What's the occasion?</label>
+                <textarea 
+                    id="eventDescription"
+                    placeholder="e.g., Job interview, Casual dinner, Weekend brunch..." 
+                    class="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FFD700] resize-none h-20"
+                ></textarea>
+            </div>
+
+            <!-- Style Preferences -->
+            <div class="mb-6 space-y-3">
+                <p class="text-xs text-gray-400 font-semibold mb-3">Style Preferences:</p>
+                
+                <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
+                    <span class="text-sm">Formal</span>
+                    <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
+                    <span class="text-sm">High-Contrast</span>
+                    <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                </div>
+
+                <div class="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg">
+                    <span class="text-sm">Colorful</span>
+                    <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+                </div>
+            </div>
+
+            <button onclick="goBackToGenerateOptions()" class="w-full bg-gray-800 border border-gray-700 py-3 rounded-xl text-white font-bold hover:border-[#FFD700] transition mb-4">
+                Back to Options
+            </button>
+            <button class="gold-gradient w-full py-4 rounded-2xl text-black font-bold text-center">
+                GENERATE LOOK
+            </button>
+        </div>
+
+        <!-- Generate Random View -->
+        <div id="generateRandomView" class="hidden">
+            <div class="text-center py-12">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/20 to-amber-600/10 flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="zap" class="w-10 h-10 text-amber-400"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-3">Surprise Me</h2>
+                <p class="text-gray-400 mb-8 text-sm px-6">Let our AI stylist pick the perfect outfit from your closet</p>
+                
+                <div class="space-y-3 mb-8">
+                    <div class="p-4 bg-gray-800/50 border border-gray-700 rounded-xl text-left">
+                        <p class="text-xs text-gray-400 mb-1">Current Mood</p>
+                        <select class="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#FFD700]">
+                            <option>Any</option>
+                            <option>Casual</option>
+                            <option>Professional</option>
+                            <option>Formal</option>
+                            <option>Sporty</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="goBackToGenerateOptions()" class="w-full bg-gray-800 border border-gray-700 py-3 rounded-xl text-white font-bold hover:border-[#FFD700] transition mb-4">
+                    Back to Options
+                </button>
+                <button class="gold-gradient w-full py-4 rounded-2xl text-black font-bold text-center">
+                    GENERATE SURPRISE
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden File Input for Moment Photos -->
+    <input type="file" id="momentPhotoInput" accept="image/*" multiple style="display: none;" onchange="handleMomentPhotoUpload(event)">
+
+    <!-- SOCIAL FEED / LOOKBOOK VIEW -->
+    <section id="view-social" class="hidden px-6">
+        <!-- Back Button -->
+        <div class="mb-6">
+            <button onclick="switchTab('closet')" class="text-white">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-bold mb-2">Style Feed</h1>
+            <p class="text-sm text-gray-400">Share and discover fashion inspiration</p>
+        </div>
+
+        <!-- Coming Soon Card -->
+        <div class="relative rounded-3xl overflow-hidden mb-8" style="height: 400px;">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600" 
+                 class="w-full h-full object-cover blur-sm" alt="Fashion">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col items-center justify-center">
+                <div class="w-20 h-20 rounded-full bg-[#FFD700] flex items-center justify-center mb-4">
+                    <i data-lucide="lock" class="w-10 h-10 text-black"></i>
+                </div>
+                <h2 class="text-2xl font-bold mb-2">Coming Soon!</h2>
+                <h3 class="text-xl font-bold text-[#FFD700] mb-6">Style Social Network</h3>
+                <div class="rounded-2xl overflow-hidden h-48 bg-gray-800">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=400" 
+                         class="w-full h-full object-cover blur-sm" alt="Preview 1">
+                </div>
+                <div class="rounded-2xl overflow-hidden h-48 bg-gray-800">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?auto=format&fit=crop&q=80&w=400" 
+                         class="w-full h-full object-cover blur-sm" alt="Preview 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-black/90 backdrop-blur-xl border-t border-gray-800/50 px-12 py-4 flex justify-around items-center">
+        <button onclick="switchTab('closet')" class="flex flex-col items-center gap-2 transition-all duration-200" id="nav-closet">
+            <div class="relative">
+                <i data-lucide="home" class="w-6 h-6 text-[#FFD700]"></i>
+            </div>
+            <span class="text-[10px] font-semibold text-[#FFD700]">CLOSET</span>
+        </button>
+
+        <button onclick="switchTab('generate')" class="flex flex-col items-center gap-2 transition-all duration-200 -mt-8" id="nav-generate">
+            <div class="w-14 h-14 rounded-full gold-gradient flex items-center justify-center shadow-lg shadow-yellow-500/30">
+                <i data-lucide="wand-2" class="w-6 h-6 text-black"></i>
+            </div>
+            <span class="text-[10px] font-semibold text-gray-500">GENERATE</span>
+        </button>
+
+        <button onclick="switchTab('social')" class="flex flex-col items-center gap-2 transition-all duration-200" id="nav-social">
+            <div class="relative">
+                <i data-lucide="user" class="w-6 h-6 text-gray-500"></i>
+            </div>
+            <span class="text-[10px] font-semibold text-gray-500">FEED</span>
+        </button>
+    </nav>
+
+    <!-- Add Item Modal -->
+    <div id="addItemModal" class="fixed inset-0 max-w-md mx-auto bg-black/60 backdrop-blur-sm flex items-end justify-center hidden">
+        <div class="bg-[#1a1a1a] w-full rounded-t-3xl p-6 border-t border-gray-700">
+            <h2 class="text-xl font-bold text-center mb-6">Add New Item</h2>
+            
+            <div class="space-y-3">
+                <button onclick="openCamera()" class="w-full flex items-center gap-4 p-4 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-[#FFD700] transition">
+                    <i data-lucide="camera" class="w-5 h-5 text-[#FFD700]"></i>
+                    <span class="font-medium">Take Photo</span>
+                </button>
+                <button onclick="openFileLibrary()" class="w-full flex items-center gap-4 p-4 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-[#FFD700] transition">
+                    <i data-lucide="image" class="w-5 h-5 text-[#FFD700]"></i>
+                    <span class="font-medium">Choose from Library</span>
+                </button>
+                <button onclick="openGoogleDrive()" class="w-full flex items-center gap-4 p-4 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-[#FFD700] transition">
+                    <i data-lucide="folder" class="w-5 h-5 text-[#FFD700]"></i>
+                    <span class="font-medium">Import from Google Drive</span>
+                </button>
+            </div>
+
+            <button onclick="closeModal('addItemModal')" class="w-full mt-6 text-center text-gray-400 text-sm py-2">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <!-- Tag Editor Modal -->
+    <div id="tagEditorModal" class="fixed inset-0 max-w-md mx-auto bg-black/60 backdrop-blur-sm flex items-center justify-center hidden">
+        <div class="bg-[#1a1a1a] rounded-3xl p-6 border border-gray-700 w-80">
+            <h2 class="text-xl font-bold text-center mb-4">Edit Tag</h2>
+            <input type="text" id="tagInput" placeholder="Enter tag name" class="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FFD700] mb-4">
+            <div class="flex gap-3">
+                <button onclick="saveTagEdit()" class="flex-1 gold-gradient py-2 rounded-xl text-black font-bold">Save</button>
+                <button onclick="closeModal('tagEditorModal')" class="flex-1 bg-gray-800 border border-gray-700 py-2 rounded-xl text-white font-bold hover:border-[#FFD700] transition">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden File Inputs -->
+    <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display: none;" onchange="handleImageUpload(event)">
+    <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="fixed inset-0 max-w-md mx-auto bg-black/70 backdrop-blur-sm flex items-center justify-center hidden p-4">
+        <div class="bg-[#141414] w-full rounded-3xl p-6 border border-gray-800 shadow-2xl relative">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- View State -->
+            <div id="profile-view-state">
+                <div class="flex flex-col items-center mb-6">
+                    <div class="w-24 h-24 rounded-full border-4 border-[#141414] bg-gray-800 overflow-hidden mb-3">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Fatima" alt="User Profile Large">
+                    </div>
+                    <h2 class="text-2xl font-bold">Fatima</h2>
+                    <p class="text-sm text-gray-400">Girl</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="p-4 bg-gray-900/60 border border-gray-800 rounded-2xl">
+                        <label class="text-xs text-gray-400">Body Height</label>
+                        <p class="font-semibold mt-1">165 cm</p>
+                    </div>
+                    <div class="p-4 bg-gray-900/60 border border-gray-800 rounded-2xl">
+                        <label class="text-xs text-gray-400">Body Type</label>
+                        <p class="font-semibold mt-1">Slim</p>
+                    </div>
+                </div>
+                <button onclick="toggleProfileEdit(true)" class="w-full bg-gray-900/60 border border-gray-800 rounded-2xl py-3 font-semibold hover:border-[#FFD700] transition">
+                    Edit Profile
+                </button>
+            </div>
+
+            <!-- Edit State -->
+            <div id="profile-edit-state" class="hidden">
+                <h2 class="text-xl font-bold text-center mb-6">Edit Profile</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-xs text-gray-400">Name</label>
+                        <input type="text" value="Fatima" class="w-full mt-2 bg-gray-900/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FFD700]">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400">Gender</label>
+                        <div class="segmented mt-2">
+                            <input type="radio" id="gender-girl" name="gender" checked>
+                            <label for="gender-girl">Girl</label>
+                            <input type="radio" id="gender-boy" name="gender">
+                            <label for="gender-boy">Boy</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400">Body Height</label>
+                        <input type="text" value="165 cm" class="w-full mt-2 bg-gray-900/60 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FFD700]">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400">Body Type</label>
+                        <select class="w-full mt-2 bg-gray-900/60 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#FFD700]">
+                            <option selected>Slim</option>
+                            <option>Medium</option>
+                            <option>Bigger</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="toggleProfileEdit(false)" class="w-full mt-6 gold-gradient py-3 rounded-xl text-black font-bold">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
