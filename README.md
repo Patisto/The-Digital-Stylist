@@ -65,4 +65,4 @@ The MVP starts as a private digital closet and evolves into a social style ecosy
 ---
 
 ## License
-MIT (placeholder)
+MIT 
